@@ -1,4 +1,5 @@
 import pygame
+import time
 pygame.init()
 
 screen = pygame.display.set_mode((800,600))
@@ -19,9 +20,26 @@ def dpressed():
     if keys[pygame.K_d]:
         global playerx
         playerx = playerx + 50
-        pygame.display.update()
         if playerx == 550:
             playerx = -550
+def apressed():
+    if keys[pygame.K_a]:
+        global playerx
+        playerx = playerx - 50
+        if playerx == -550:
+            playerx = 550
+def spaceclicked():
+    global playery
+    if keys[pygame.K_SPACE]:
+        w = 0
+        print("YES")
+        target = playery = 50
+        for w in range(50):
+            playery = playery - 1
+
+
+
+
 
 game = True
 while game:
@@ -32,12 +50,8 @@ while game:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game = False
-
+        spaceclicked()
         dpressed()
-        if keys[pygame.K_a]:
-                playerx = playerx - 50
-                pygame.display.update()
-                if playerx == -550:
-                    playerx = 550
+        apressed()
 
 
